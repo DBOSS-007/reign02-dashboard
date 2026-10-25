@@ -1,0 +1,79 @@
+/* Reign dashboard shell — only the page behind the modals.
+   Replace this with your real dashboard styles; modals.css works on its own. */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap');
+
+:root {
+  --navy-900: #050b20; --navy-800: #0a1635; --navy-700: #0f2150;
+  --cream: #f8f4ea; --gold: #d9b868; --gold-light: #ecd593; --gold-deep: #b8914a;
+  --gold-grad: linear-gradient(135deg, #ecd593 0%, #d9b868 50%, #b8914a 100%);
+  --text: #eef0f7; --muted: #9aa5c4; --line: rgba(255,255,255,.10);
+}
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0; min-height: 100vh; padding-bottom: 80px;
+  font: 15px/1.6 'Inter', system-ui, sans-serif; color: var(--text);
+  background:
+    radial-gradient(60% 50% at 90% 20%, rgba(217,184,104,.10), transparent 70%),
+    linear-gradient(180deg, var(--navy-700), var(--navy-800) 40%, var(--navy-900));
+  background-attachment: fixed;
+}
+
+.topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  padding: 16px clamp(20px, 6vw, 120px);
+  background: var(--cream); color: var(--navy-800);
+}
+.brand { display: inline-flex; align-items: center; gap: 12px; font: 700 1.6rem 'Fraunces', serif; color: var(--navy-800); text-decoration: none; }
+.brand::before {
+  content: "R"; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%;
+  font-size: 1rem; background: var(--gold-grad); box-shadow: 0 0 0 3px rgba(217,184,104,.25);
+}
+.topbar nav { display: flex; gap: 28px; flex-wrap: wrap; }
+.topbar nav a { color: var(--navy-800); font-weight: 500; text-decoration: none; }
+.topbar nav a:hover { color: var(--gold-deep); }
+
+main { max-width: 1100px; margin: 0 auto; padding: 48px clamp(20px, 4vw, 32px) 0; }
+
+.eyebrow { display: flex; align-items: center; gap: 12px; margin: 0 0 8px; font: 500 .75rem 'IBM Plex Mono', monospace; letter-spacing: .3em; color: var(--gold); }
+.eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--gold); }
+h1, h2 { font-family: 'Fraunces', serif; letter-spacing: -.01em; margin: 0; }
+h1 { font-size: clamp(2rem, 4vw, 3rem); }
+h2 { font-size: 1.5rem; }
+
+.head-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+.section { margin-top: 48px; }
+
+/* Wallet cards */
+.wallets { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+.wallet {
+  padding: 24px; border: 1px solid var(--line); border-radius: 24px;
+  background: rgba(255,255,255,.04);
+  transition: border-color .3s, transform .3s;
+}
+.wallet:hover { border-color: rgba(217,184,104,.4); transform: translateY(-3px); }
+.wallet__code { font: 500 .75rem 'IBM Plex Mono', monospace; letter-spacing: .2em; color: var(--gold); }
+.wallet__name { margin: 2px 0 14px; color: var(--muted); font-size: .9rem; }
+.wallet__bal { margin: 0 0 18px; font: 600 1.7rem 'Fraunces', serif; color: #fff; }
+.wallet__actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.btn {
+  padding: 9px 18px; font: 600 .85rem 'Inter', sans-serif; color: var(--cream);
+  background: transparent; border: 1px solid rgba(255,255,255,.28); border-radius: 999px; cursor: pointer;
+  transition: border-color .25s, background .25s, transform .25s;
+}
+.btn:hover { border-color: var(--gold); background: rgba(217,184,104,.1); transform: translateY(-1px); }
+.btn--gold { color: var(--navy-800); background: var(--gold-grad); border-color: transparent; box-shadow: 0 6px 18px rgba(184,145,74,.35); }
+.btn--gold:hover { background: var(--gold-grad); box-shadow: 0 10px 26px rgba(217,184,104,.45); }
+.btn--lg { padding: 13px 28px; font-size: .95rem; }
+
+/* Investments table */
+.card { padding: 8px 28px 16px; border: 1px solid var(--line); border-radius: 24px; background: rgba(255,255,255,.04); overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 640px; }
+th { padding: 20px 12px 14px 0; text-align: left; font: 500 .7rem 'IBM Plex Mono', monospace; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); border-bottom: 1px solid var(--line); }
+td { padding: 18px 12px 18px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+tr:last-child td { border-bottom: 0; }
+td:first-child { font-family: 'Fraunces', serif; font-weight: 600; }
+td:last-child, th:last-child { text-align: right; padding-right: 0; }
+.status { display: inline-block; padding: 4px 12px; font: 500 .7rem 'IBM Plex Mono', monospace; letter-spacing: .12em; text-transform: uppercase; color: #6fd3a0; background: rgba(111,211,160,.1); border: 1px solid rgba(111,211,160,.35); border-radius: 999px; }
